@@ -1,5 +1,6 @@
-
-![alt text](img/logo-nobk-black.png)
+<p align="center">
+  <img src="img/logo-nobk-black.png">
+</p>
 
 **Application to manage your personal or your organization links in a grouped and orderly way.**
 
