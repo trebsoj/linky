@@ -1,0 +1,19 @@
+
+### OFF
+GET http://otto:1880/pis/off
+Content-Type: application/json
+
+### MODE TV
+GET http://otto:1880/pis/mode-tv
+Content-Type: application/json
+
+
+### MODE MENJAR
+GET http://otto:1880/pis/mode-menjar
+Content-Type: application/json
+
+
+### test
+GET http://otto:1880/test
+Content-Type: application/json
+
