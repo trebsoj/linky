@@ -15,6 +15,7 @@
 - If a link has the "Redirect code" field configured, it can be accessed directly with the URL and you will be redirected to the destination.
 
 
+# Screenshots
 ![alt text](img/1.png)
 
 ![alt text](img/2.png)
