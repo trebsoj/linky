@@ -4,6 +4,17 @@
 
 **Application to manage your personal or your organization links in a grouped and orderly way.**
 
+# Features list
+- For local application running, you need just two dependencies - installed `docker` and `docker-compose` (`make` is optional, but strongly recommended)
+- Application built with Laravel PHP + bootstrap + mysql + nginx
+- One only user (admin)
+- /public route to see the links marked as public (without login)
+- Create link groups
+- Create variables for the links
+    - For example, we can save the domain https://github.com domain as `$git`, so all the links that refer to this domain, we will only have to save the link as: `$git/trebsoj`.
+- If a link has the "Redirect code" field configured, it can be accessed directly with the URL and you will be redirected to the destination.
+
+
 ![alt text](img/1.png)
 
 ![alt text](img/2.png)
@@ -13,16 +24,7 @@
 Public route:
 
 ![alt text](img/4.png)
-
-# Features list
-- For local application running, you need just two dependencies - installed `docker` and `docker-compose` (`make` is optional, but strongly recommended)
-- Application built with Laravel PHP + bootstrap + mysql + nginx
-- One only user (admin)
-- /public route to see the links marked as public (without login)
-- Create link groups
-- Create variables for the links
-    - For example, we can save the domain https://github.com domain as `$git`, so all the links that refer to this domain, we will only have to save the link as: `$git/trebsoj`.
-- If a link has the "Redirect code" field configured, it can be accessed directly with the URL and you will be redirected to the destination.    
+    
 # How to use
 
 **1. Clone repository**
