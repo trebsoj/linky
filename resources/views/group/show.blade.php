@@ -60,19 +60,19 @@
     <div class="row">
         <div class="col-2 col-md-2"><span>{{$item->code}}</span></div>
         <div class="col-7 col-md-7 ">
-            @if(str_contains($item->href, 'http'))
+<!--            @if(str_contains($item->href, 'http'))-->
             <a href="{{$item->href}}" class="link-success" target="_blank">
                  <span class="badge bg-secondary " style="font-size: 1.1em;padding:6px;margin-bottom: 15px">
                     {{$item->name}}
                 </span>
             </a>
-            @else
-            <a href="\\{{$item->href}}" class="link-success" target="_blank">
-                 <span class="badge bg-secondary " style="font-size: 1.1em;padding:6px;margin-bottom: 15px">
-                    {{$item->name}}
-                </span>
-            </a>
-            @endif
+<!--            @else-->
+<!--            <a href="\\{{$item->href}}" class="link-success" target="_blank">-->
+<!--                 <span class="badge bg-secondary " style="font-size: 1.1em;padding:6px;margin-bottom: 15px">-->
+<!--                    {{$item->name}}-->
+<!--                </span>-->
+<!--            </a>-->
+<!--            @endif-->
         </div>
         <div class="col-12 col-md-3" style="text-align:end">
             <i class="fas @if($item->public) fa-globe @else fa-lock @endif"></i>
