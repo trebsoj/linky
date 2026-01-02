@@ -54,12 +54,18 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show(Group $group, Request $request)
     {
+        $linksQuery = Link::where('id_group', '=', $group->id);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $linksQuery->where('name', 'like', '%' . $request->search . '%');
+        }
+
         $links = $this->linkController->replaceVariables(
-            Link::where('id_group', '=', $group->id)->orderBy('name', 'asc')->get()
+            $linksQuery->orderBy('name', 'asc')->get()
         );
-        return view('group.show', compact('links', 'group'));
+        return view('group.show', compact('links', 'group') + ['search' => $request->search]);
     }
     /**
      * Display the specified resource.

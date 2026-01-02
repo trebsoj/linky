@@ -16,34 +16,47 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $linksQuery = Link::with('group');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $linksQuery->where('name', 'like', '%' . $request->search . '%');
+        }
+
         return view('link.index', [
             'links' => $this->replaceVariables(
-                Link::with('group')
+                $linksQuery
                     ->get()
                     ->sortBy(function ($link) {
                         return strtoupper("#{$link->group->name}#{$link->name}#");
                     })
                     ->values()
                     ->all()
-            )
+            ),
+            'search' => $request->search
         ]);
     }
 
-    public function indexPublic()
+    public function indexPublic(Request $request)
     {
+        $linksQuery = Link::with('group')->where('public','=', '1');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $linksQuery->where('name', 'like', '%' . $request->search . '%');
+        }
+
         return view('public.index', [
             'links' => $this->replaceVariables(
-                Link::with('group')
-                    ->where('public','=', '1')
+                $linksQuery
                     ->get()
                     ->sortBy(function ($link) {
                         return strtoupper("#{$link->group->name}#{$link->name}#");
                     })
                     ->values()
                     ->all()
-            ), 'public'=> true
+            ), 'public'=> true,
+            'search' => $request->search
         ]);
     }
 

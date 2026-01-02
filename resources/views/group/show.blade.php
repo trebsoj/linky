@@ -3,6 +3,18 @@
 
 @section('content')
 
+<form method="GET" action="{{ route('group.show', $group) }}" class="d-flex mb-3">
+    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search" class="form-control me-2" style="max-width: 300px;">
+    <button type="submit" class="btn btn-labeled btn-success px-3 me-2">
+        <span class="btn-label"><i class="fa fa-search"></i></span>
+    </button>
+    @if($search ?? '')
+    <button type="button" class="btn btn-labeled btn-secondary px-3" onclick="this.previousElementSibling.previousElementSibling.value=''; this.form.submit();">
+        <span class="btn-label"><i class="fa fa-times"></i></span>
+    </button>
+    @endif
+</form>
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-2 mb-3 border-bottom">
     <h3>
         <img src="/images/favicon.png" height="30px"> {{$group->name}}
