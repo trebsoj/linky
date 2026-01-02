@@ -18,9 +18,6 @@ help: ## Show this help
 sh-app: ## Start shell into app container
 	docker compose run $(DC_RUN_ARGS) linky-app sh
 
-sh-db: ## Start shell into app container
-	docker compose run $(DC_RUN_ARGS) linky-db sh
-
 sh-webserver: ## Start shell into app container
 	docker compose run $(DC_RUN_ARGS) linky-nginx sh
 

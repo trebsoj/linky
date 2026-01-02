@@ -18,8 +18,6 @@ services:
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - linky-network
-    links:
-      - linky-db
 
   #Nginx Service
   linky-nginx:
@@ -35,34 +33,7 @@ services:
     networks:
       - linky-network
 
-  #MySQL Service
-  linky-db:
-    image: mysql:8.0
-    container_name: linky-db
-    restart: unless-stopped
-    tty: true
-    command: --default-authentication-plugin=mysql_native_password
-# Uncomment if you want to expose the port.
-#    ports:
-#      - '${DB_PORT}:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    volumes:
-      - dbdata:/var/lib/mysql/
-      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
-    networks:
-      - linky-network
-
 #Docker Networks
 networks:
   linky-network:
     driver: bridge
-#Volumes
-volumes:
-  dbdata:
-    driver: local
