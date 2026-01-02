@@ -6,7 +6,7 @@
 
 # Features list
 - For local application running, you need just two dependencies - installed `docker` and `docker-compose` (`make` is optional, but strongly recommended)
-- Application built with Laravel PHP + bootstrap + mysql + nginx
+- Application built with Laravel PHP + bootstrap + sqlite + nginx
 - One only user (admin)
 - /public route to see the links marked as public (without login)
 - Create link groups
@@ -30,7 +30,7 @@ Public route:
 
 **1. Clone repository**
 ```shell
-$ git clone https://github.com/trebsoj/home-app.git
+$ git clone https://github.com/trebsoj/linky.git
 ```
 
 **2. Configuration file**
@@ -63,10 +63,7 @@ Execute in your terminal:
 $ make sh-app
 ```
 ```shell
-$ make sh-db
-```
-```shell
-$ make sh-webserver
+$ make sh-nginx
 ```
 
 ### Watch logs?
@@ -75,21 +72,3 @@ $ make sh-webserver
 $ docker-compose logs -f
 ```
 
-### Restart admin user?
-- Connect to the database container
-
-```shell
-$ make sh-db
-```
-
-- Connect to mysql (Use credentials from the .env file)
-
-```shell
-$ mysql --host db -u {DB_USER} -p
-```
-- Enter de password {DB_PASSWORD}
-- Truncate the users table
-```shell
-  truncate table home_app.users;
-```
-- Now when you enter the application again, it will ask you to re-register the admin user
