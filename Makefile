@@ -18,8 +18,8 @@ help: ## Show this help
 sh-app: ## Start shell into app container
 	docker compose run $(DC_RUN_ARGS) linky-app sh
 
-sh-webserver: ## Start shell into app container
-	docker compose run $(DC_RUN_ARGS) linky-nginx sh
+sh-nginx: ## Start shell into app container
+	docker compose run $(DC_RUN_ARGS) linky-nginx sh`
 
 init: ## Make full application initialization
 	docker compose run $(DC_RUN_ARGS) --no-deps linky-app composer install --ansi --prefer-dist --optimize-autoloader --no-dev
