@@ -41,7 +41,10 @@ down: ## Stop containers
 restart: down up ## Restart all containers
 
 update: ## Update to the latest version of the application
+	make down
 	git pull
+	docker compose build
+	make up
 	make init
 
 clean: ## Make clean
