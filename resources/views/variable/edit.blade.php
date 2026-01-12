@@ -17,7 +17,7 @@
         <!-- Variable Key -->
         <div>
             <label for="key" class="block text-sm font-semibold text-gray-700 mb-2">Variable Key</label>
-            <input type="text" name="key" placeholder="e.g., {{BASE_URL}}" 
+            <input type="text" name="key" placeholder="e.g., @{{BASE_URL}}" 
                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 value="{{$variable->key}}" required
             >

@@ -20,7 +20,7 @@
     <form action="{{route('variable.store')}}" method="POST" class="grid grid-cols-1 md:grid-cols-5 gap-3" novalidate>
         @csrf
         <div class="md:col-span-2">
-            <input type="text" name="key" placeholder="Variable key (e.g., {{BASE_URL}})" 
+            <input type="text" name="key" placeholder="Variable key (e.g., @{{BASE_URL}})" 
                 class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 required
             >
@@ -60,14 +60,14 @@
                         <code class="bg-gray-100 px-2 py-1 rounded text-xs">{{$item->value}}</code>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm space-x-2">
-                        <a href="{{route('variable.edit', $item)}}" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded inline-flex items-center gap-1 transition text-xs font-medium">
+                        <a href="{{route('variable.edit', $item)}}" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded inline-flex items-center gap-1 transition text-xs font-medium">
                             <i class="fas fa-pencil"></i>
                             Edit
                         </a>
                         <form action="{{route('variable.destroy', $item)}}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this variable?')">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded inline-flex items-center gap-1 transition text-xs font-medium">
+                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded inline-flex items-center gap-1 transition text-xs font-medium">
                                 <i class="fas fa-trash"></i>
                                 Delete
                             </button>
@@ -85,14 +85,6 @@
     <p class="text-gray-500 text-lg font-medium">No variables yet</p>
     <p class="text-gray-400 text-sm">Create your first variable using the form above</p>
 </div>
-@endif
-
-@endsection
-            </div>
-        </div>
-        <hr>
-    @endforeach
-
 @endif
 
 @endsection

@@ -51,6 +51,7 @@
 
   <div class="flex min-h-screen">
     <!-- Sidebar -->
+    @if(empty($public))
     <nav id="sidebarMenu" class="fixed md:sticky top-12 md:top-0 left-0 w-64 h-[calc(100vh-3rem)] md:h-screen bg-white border-r border-gray-200 overflow-y-auto transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-30 md:z-0 sidebar">
       <div class="p-4 space-y-6">
 
@@ -88,7 +89,7 @@
 
           <div class="border-t border-gray-200 my-4"></div>
 
-          <form action="{{route('group.store')}}" method="POST" class="space-y-3" novalidate>
+          <form action="{{route('group.store')}}" method="POST" class="space-y-3 border-t border-gray-200 pt-4" novalidate>
               @csrf
               <input type="text" name="name" placeholder="Group name..." 
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm" 
@@ -114,6 +115,7 @@
         @endif
       </div>
     </nav>
+    @endif
 
     <!-- Main Content -->
     <main class="flex-1 overflow-auto">
