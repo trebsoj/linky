@@ -106,7 +106,7 @@ class GroupController extends Controller
     public function update(Request $request, Group $group)
     {
         $request->validate([
-            'name' => 'required|unique:groups'
+            'name' => 'required|unique:groups,name,' . $group->id
         ]);
         $group->update($request->all());
         return redirect()->route('group.show',['group' => $group->id]);
