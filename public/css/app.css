@@ -160,7 +160,6 @@
   }
   img, video {
     max-width: 100%;
-    height: auto;
   }
   button, input, select, optgroup, textarea, ::file-selector-button {
     font: inherit;

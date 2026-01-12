@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>linky</title>
+    <title>Linky</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -31,13 +31,11 @@
         </button>
         @if(empty($public))
           <a class="flex items-center gap-2 hover:opacity-80 transition" href="{{route('link.index')}}">
-            <img src="/images/logo-nobk-grey.png" height="24" alt="Logo">
-            <span class="font-semibold text-gray-900 hidden sm:inline">Linky</span>
+            <img src="/images/logo-nobk-grey.png" height="24" alt="Logo"> 
           </a>
         @else
           <a class="flex items-center gap-2 hover:opacity-80 transition" href="{{route('public.index')}}">
-            <img src="/images/logo-nobk-grey.png" height="24" alt="Logo">
-            <span class="font-semibold text-gray-900 hidden sm:inline">Linky</span>
+            <img src="/images/logo-nobk-grey.png" height="24" alt="Logo"> 
           </a>
         @endif
       </div>
