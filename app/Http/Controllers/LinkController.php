@@ -27,11 +27,8 @@ class LinkController extends Controller
         return view('link.index', [
             'links' => $this->replaceVariables(
                 $linksQuery
+                    ->orderByRaw('LOWER(name) ASC')
                     ->get()
-                    ->sortBy(function ($link) {
-                        return strtoupper("#{$link->group->name}#{$link->name}#");
-                    })
-                    ->values()
                     ->all()
             ),
             'search' => $request->search
@@ -49,11 +46,8 @@ class LinkController extends Controller
         return view('public.index', [
             'links' => $this->replaceVariables(
                 $linksQuery
+                    ->orderByRaw('LOWER(name) ASC')
                     ->get()
-                    ->sortBy(function ($link) {
-                        return strtoupper("#{$link->group->name}#{$link->name}#");
-                    })
-                    ->values()
                     ->all()
             ), 'public'=> true,
             'search' => $request->search

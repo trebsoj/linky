@@ -63,7 +63,7 @@ class GroupController extends Controller
         }
 
         $links = $this->linkController->replaceVariables(
-            $linksQuery->orderBy('name', 'asc')->get()
+            $linksQuery->orderByRaw('LOWER(name) ASC')->get()
         );
         return view('group.show', compact('links', 'group') + ['search' => $request->search]);
     }
@@ -78,7 +78,7 @@ class GroupController extends Controller
         $links = $this->linkController->replaceVariables(
             Link::where('id_group', '=', $group->id)
                 ->where('public', '=', "1")
-                ->orderBy('name', 'asc')
+                ->orderByRaw('LOWER(name) ASC')
                 ->get()
         );
         $public = true;

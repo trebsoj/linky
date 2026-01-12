@@ -86,6 +86,8 @@
             @endforeach
           </ul>
 
+          <div class="border-t border-gray-200 my-4"></div>
+
           <form action="{{route('group.store')}}" method="POST" class="space-y-3" novalidate>
               @csrf
               <input type="text" name="name" placeholder="Group name..." 
