@@ -27,7 +27,10 @@ class LinkController extends Controller
         return view('link.index', [
             'links' => $this->replaceVariables(
                 $linksQuery
-                    ->orderByRaw('LOWER(name) ASC')
+                    ->join('groups', 'links.id_group', '=', 'groups.id')
+                    ->select('links.*')
+                    ->orderByRaw('LOWER(groups.name) ASC')
+                    ->orderByRaw('LOWER(links.name) ASC')
                     ->get()
                     ->all()
             ),
