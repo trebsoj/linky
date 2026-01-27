@@ -9,9 +9,8 @@
     </h1>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 gap-6">
     <!-- Form Section -->
-    <div class="lg:col-span-2">
         <form action="{{route('link.update', $link->id)}}" method="POST" class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700 space-y-6" novalidate>
             @method('PUT')
             @csrf
@@ -75,12 +74,9 @@
                 </a>
             </div>
         </form>
-    </div>
 
     <!-- Logs Section -->
-    <div class="lg:col-span-1">
         @include('redirect_logs.index')
-    </div>
 </div>
 
 @endsection
