@@ -21,17 +21,17 @@ class LinkController extends Controller
         $linksQuery = Link::with('group');
 
         if ($request->has('search') && !empty($request->search)) {
-            $linksQuery->where('name', 'like', '%' . $request->search . '%');
+            $linksQuery->where('links.name', 'like', '%' . $request->search . '%');
         }
 
         return view('link.index', [
             'links' => $this->replaceVariables(
                 $linksQuery
+                    ->join('groups', 'links.id_group', '=', 'groups.id')
+                    ->select('links.*')
+                    ->orderByRaw('LOWER(groups.name) ASC')
+                    ->orderByRaw('LOWER(links.name) ASC')
                     ->get()
-                    ->sortBy(function ($link) {
-                        return strtoupper("#{$link->group->name}#{$link->name}#");
-                    })
-                    ->values()
                     ->all()
             ),
             'search' => $request->search
@@ -43,17 +43,14 @@ class LinkController extends Controller
         $linksQuery = Link::with('group')->where('public','=', '1');
 
         if ($request->has('search') && !empty($request->search)) {
-            $linksQuery->where('name', 'like', '%' . $request->search . '%');
+            $linksQuery->where('links.name', 'like', '%' . $request->search . '%');
         }
 
         return view('public.index', [
             'links' => $this->replaceVariables(
                 $linksQuery
+                    ->orderByRaw('LOWER(links.name) ASC')
                     ->get()
-                    ->sortBy(function ($link) {
-                        return strtoupper("#{$link->group->name}#{$link->name}#");
-                    })
-                    ->values()
                     ->all()
             ), 'public'=> true,
             'search' => $request->search

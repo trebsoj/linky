@@ -34,6 +34,7 @@ Route::resources(
 Route::get('/public', [LinkController::class, 'indexPublic'])->name('public.index');
 Route::get('/r/{code}', [LinkController::class, 'redirect'])->name('redirect');
 Route::get('/public/group/{group}', [GroupController::class, 'showPublic'])->name('public.group.show');
+Route::get('/group/{group}/random', [GroupController::class, 'random'])->name('group.random');
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');

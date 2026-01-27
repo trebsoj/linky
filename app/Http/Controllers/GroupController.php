@@ -63,7 +63,7 @@ class GroupController extends Controller
         }
 
         $links = $this->linkController->replaceVariables(
-            $linksQuery->orderBy('name', 'asc')->get()
+            $linksQuery->orderByRaw('LOWER(name) ASC')->get()
         );
         return view('group.show', compact('links', 'group') + ['search' => $request->search]);
     }
@@ -78,11 +78,34 @@ class GroupController extends Controller
         $links = $this->linkController->replaceVariables(
             Link::where('id_group', '=', $group->id)
                 ->where('public', '=', "1")
-                ->orderBy('name', 'asc')
+                ->orderByRaw('LOWER(name) ASC')
                 ->get()
         );
         $public = true;
         return view('public.group', compact('links', 'group', 'public'));
+    }
+
+    /**
+     * Redirect to a random link within the group.
+     *
+     * @param  \App\Models\Group  $group
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function random(Group $group)
+    {
+        $links = Link::where('id_group', $group->id)->get();
+
+        if ($links->isEmpty()) {
+            return back()->with('error', 'This group has no links.');
+        }
+
+        $randomLink = $links->random();
+        
+        // Replace variables in href using LinkController's method
+        $processedLinks = $this->linkController->replaceVariables(collect([$randomLink]));
+        $href = $processedLinks->first()->href;
+
+        return redirect($href);
     }
 
     /**
@@ -106,7 +129,7 @@ class GroupController extends Controller
     public function update(Request $request, Group $group)
     {
         $request->validate([
-            'name' => 'required|unique:groups'
+            'name' => 'required|unique:groups,name,' . $group->id
         ]);
         $group->update($request->all());
         return redirect()->route('group.show',['group' => $group->id]);

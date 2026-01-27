@@ -3,70 +3,113 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.83.1">
-    <title>linky - Register</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- font-awesome -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
-    <link href="/css/general.css" rel="stylesheet">
+    <title>linky - Register Admin</title>
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+        body { font-family: 'Inter', sans-serif; }
     </style>
-
-
 </head>
-<body class="text-center">
+<body class="bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center min-h-screen p-4">
 
-<main class="form-signin">
-    <img src="images/logo-nobk.png"width="200">
-    <p></p>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-        <!--        <h5 class="mb-3 fw-normal">/home</h5>-->
-        <h1 class="h3 mb-3 fw-normal" style="color: #807f7f">Create admin user</h1>
+<div class="w-full max-w-md">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+        <img src="/images/logo-nobk.png" alt="Linky" class="w-32 h-auto mx-auto mb-4">
+        <h1 class="text-3xl font-bold text-gray-900">Create Admin Account</h1>
+        <p class="text-gray-600 mt-2">Set up your first admin user</p>
+    </div>
 
-        <div class="form-floating">
-            <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-            <label for="floatingInput">{{ __('E-Mail Address') }}</label>
-            @error('email')
-            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-            @enderror
-        </div>
-        <div class="form-floating">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-            <label for="floatingInput">{{ __('Password') }}</label>
-            @error('password')
-            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-            @enderror
-        </div>
-        <div class="form-floating">
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-            <label for="floatingInput">{{ __('Confirm Password') }}</label>
-        </div>
+    <!-- Register Card -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+        <form method="POST" action="{{ route('register') }}" class="space-y-5" novalidate>
+            @csrf
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
-        <!--        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>-->
-    </form>
+            <!-- Email Input -->
+            <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Email Address') }}</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <input type="email" 
+                        id="email" 
+                        name="email" 
+                        value="{{ old('email') }}" 
+                        required 
+                        autocomplete="email" 
+                        autofocus
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition @error('email') border-red-500 @enderror"
+                        placeholder="admin@example.com"
+                    >
+                </div>
+                @error('email')
+                    <p class="text-red-600 text-sm mt-1 flex items-center gap-1">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>{{ $message }}</strong>
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Password Input -->
+            <div>
+                <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Password') }}</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        autocomplete="new-password"
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition @error('password') border-red-500 @enderror"
+                        placeholder="••••••••"
+                    >
+                </div>
+                @error('password')
+                    <p class="text-red-600 text-sm mt-1 flex items-center gap-1">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>{{ $message }}</strong>
+                    </p>
+                @enderror
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div>
+                <label for="password-confirm" class="block text-sm font-semibold text-gray-700 mb-2">{{ __('Confirm Password') }}</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" 
+                        id="password-confirm" 
+                        name="password_confirmation" 
+                        required 
+                        autocomplete="new-password"
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="••••••••"
+                    >
+                </div>
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-200 transform hover:scale-105 active:scale-95">
+                <i class="fas fa-user-plus mr-2"></i>
+                {{ __('Create Admin Account') }}
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <p class="text-center text-gray-500 text-sm mt-8">
+        {{ config('app.name', 'Linky') }} &copy; 2026
+    </p>
+</div>
+
+</body>
+</html>
 </main>
 </body>
 </html>

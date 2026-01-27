@@ -23,7 +23,9 @@ RUN apt update && apt install -y \
     default-libmysqlclient-dev \
     libsqlite3-dev \
     libonig-dev \
-    curl
+    curl \
+    nodejs \
+    npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

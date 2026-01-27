@@ -25,6 +25,8 @@ init: ## Make full application initialization
 	docker compose run $(DC_RUN_ARGS) --no-deps linky-app composer install --ansi --prefer-dist --optimize-autoloader --no-dev
 	docker compose run $(DC_RUN_ARGS) linky-app php ./artisan key:generate
 	docker compose run $(DC_RUN_ARGS) linky-app php ./artisan migrate --force
+	docker compose run $(DC_RUN_ARGS) linky-app npm install
+	docker compose run $(DC_RUN_ARGS) linky-app npm run prod
 	docker compose run $(DC_RUN_ARGS) linky-app chown -R www:www /var/www
 
 up: ## Create and start containers
