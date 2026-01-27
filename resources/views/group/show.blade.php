@@ -87,7 +87,7 @@
             <label class="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" value="1" name="public" id="vPublic" class="w-4 h-4 text-blue-600">
                 <i class="fas fa-globe text-blue-600"></i>
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Yes</span>
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Public page</span>
             </label>
         </div>
 
