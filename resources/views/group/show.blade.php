@@ -31,10 +31,25 @@
 <!-- Header Section -->
 <div class="mb-6">
     <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-3">
-            <img src="/images/favicon.png" height="32" alt="Group icon" class="w-8 h-8">
-            {{$group->name}}
-        </h1>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-3">
+                <img src="/images/favicon.png" height="32" alt="Group icon" class="w-8 h-8">
+                {{$group->name}}
+            </h1>
+            <div class="mt-1 flex items-center gap-2">
+                @if($group->enable_random)
+                    <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-200 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-xs font-semibold">
+                        <i class="fas fa-check text-xs"></i>
+                        Random route
+                    </span>
+                @else
+                <span class="inline-flex items-center gap-1 px-2 py-1 bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-300 rounded text-xs font-semibold">
+                        <i class="fas fa-xmark text-xs"></i>
+                        Random route
+                    </span>
+                @endif
+            </div>
+        </div>
         <div class="flex gap-2">
             <a href="{{route('group.edit',$group)}}" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg font-medium transition flex items-center gap-2">
                 <i class="fas fa-pencil"></i>
@@ -86,7 +101,7 @@
         <div class="flex items-center">
             <label class="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" value="1" name="public" id="vPublic" class="w-4 h-4 text-blue-600">
-                <i class="fas fa-globe text-blue-600"></i>
+                <i class="fas fa-eye text-blue-600"></i>
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Public page</span>
             </label>
         </div>
@@ -132,13 +147,11 @@
                     <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
                         @if($item->public)
                             <span class="inline-flex items-center gap-1 text-green-700 dark:text-green-400">
-                                <i class="fas fa-globe"></i>
-                                <span class="text-xs font-semibold">Yes</span>
+                                <i class="fas fa-check"></i>
                             </span>
                         @else
                             <span class="inline-flex items-center gap-1 text-gray-700 dark:text-gray-300">
-                                <i class="fas fa-lock"></i>
-                                <span class="text-xs font-semibold">No</span>
+                                <i class="fas fa-xmark"></i>
                             </span>
                         @endif
                     </td>

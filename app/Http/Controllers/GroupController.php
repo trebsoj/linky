@@ -93,6 +93,10 @@ class GroupController extends Controller
      */
     public function random(Group $group)
     {
+        if (!$group->enable_random) {
+            abort('404');
+        }
+
         $links = Link::where('id_group', $group->id)->get();
 
         if ($links->isEmpty()) {
@@ -100,7 +104,7 @@ class GroupController extends Controller
         }
 
         $randomLink = $links->random();
-        
+
         // Replace variables in href using LinkController's method
         $processedLinks = $this->linkController->replaceVariables(collect([$randomLink]));
         $href = $processedLinks->first()->href;
@@ -116,7 +120,8 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        return view('group.edit', compact('group'));
+        $hostname = url('/');
+        return view('group.edit', compact('group', 'hostname'));
     }
 
     /**
@@ -131,7 +136,10 @@ class GroupController extends Controller
         $request->validate([
             'name' => 'required|unique:groups,name,' . $group->id
         ]);
-        $group->update($request->all());
+        $data = $request->all();
+        $data['enable_random'] = $request->has('enable_random') ? 1 : 0;
+
+        $group->update($data);
         return redirect()->route('group.show',['group' => $group->id]);
     }
 

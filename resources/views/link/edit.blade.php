@@ -57,7 +57,7 @@
                     class="w-5 h-5 text-blue-600 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 rounded focus:ring-2 focus:ring-blue-500"
                 >
                 <label for="vPublic" class="flex items-center gap-2 cursor-pointer">
-                    <i class="fas fa-globe text-blue-600"></i>
+                    <i class="fas fa-eye text-blue-600"></i>
                     <span class="font-medium text-gray-700 dark:text-gray-300">Show in public page</span>
                 </label>
             </div>
